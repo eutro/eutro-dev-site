@@ -340,10 +340,15 @@ function Navbar(props) {
         e("img", {src:"/favicon.ico", title:"logo"}))),
     e("div", {
       className: classes(
-        "flex-col md:flex-row md:inline-flex bg-gray-100 dark:bg-gray-900",
-        "w-full md:mt-0 md:ml-0 translate-y-full md:translate-y-0",
-        "transition-opacity absolute md:left-14 bottom-0 -ml-2 flex",
-        burgerActive ? "opacity-100" : "opacity-0 md:opacity-100"
+        "bg-gray-100 dark:bg-gray-900 w-full absolute bottom-0 flex",
+        "flex-col md:flex-row",
+        "md:inline-flex",
+        "translate-y-full md:translate-y-0",
+        "-ml-2 md:ml-0",
+        "md:left-14",
+        "md:max-h-fit",
+        "overflow-hidden transition-[opacity,max-height]",
+        burgerActive ? "opacity-100 max-h-[100vh]" : "opacity-0 md:opacity-100 max-h-0"
       )
     },
       tabs.map(function(tab, i) {
