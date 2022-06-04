@@ -340,7 +340,7 @@ function Navbar(props) {
         e("img", {src:"/favicon.ico", title:"logo"}))),
     e("div", {
       className: classes(
-        "bg-gray-100 dark:bg-gray-900 w-full absolute bottom-0 flex",
+        "bg-gray-100 dark:bg-gray-900 w-full absolute bottom-0 z-10 flex",
         "flex-col md:flex-row",
         "md:inline-flex",
         "translate-y-full md:translate-y-0",
