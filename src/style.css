@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /* https://stackoverflow.com/a/43965099 */
+    .collapsible-wrapper {
+        display: flex;
+        overflow: hidden;
+    }
+    .collapsible-wrapper:after {
+        content: '';
+        height: 50px;
+        transition: height 0.3s linear, max-height 0s 0.3s linear;
+        max-height: 0px;
+    }
+    .collapsible {
+        transition: margin-bottom 0.3s cubic-bezier(0, 0, 0, 1);
+        margin-bottom: 0;
+        max-height: 1000000px;
+    }
+    .collapsible-wrapper.collapsed > .collapsible {
+        margin-bottom: -2000px;
+        transition: margin-bottom 0.3s cubic-bezier(1, 0, 1, 1),
+                    visibility 0s 0.3s, max-height 0s 0.3s;
+        visibility: hidden;
+        max-height: 0;
+    }
+    .collapsible-wrapper.collapsed:after {
+        height: 0;
+        transition: height 0.3s linear;
+        max-height: 50px;
+    }
+
+    @media (prefers-reduced-motion) {
+        .collapsible-wrapper,
+        .collapsible,
+        .collapsible-wrapper.collapsed > .collapsible,
+        .collapsible-wrapper.collapsed:after {
+            transition: none;
+        }
+    }
+}

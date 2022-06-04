@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-white text-[16px]">
+<html lang="en"
+      class="text-[16px] bg-gray-50 text-slate-800 dark:bg-gray-900 dark:text-slate-200">
   <!--
       Hello! The source code of this site is licensed MIT (see the footer), so feel free to look around.
     -->
@@ -14,22 +15,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   </head>
-  <body class="text-slate-800">
-    <div class="mx-auto 2xl:max-w-screen-xl xl:max-w-screen-lg lg:max-w-screen-md" id="root-container">
-      <div class="p-12">
-        This site requires JavaScript to work properly, you have it disabled, or something else went wrong.
+  <body>
+    <div id="root-container">
+      <div class="w-full bg-white dark:bg-slate-800">
+        <div class="mx-auto 2xl:max-w-screen-xl xl:max-w-screen-lg lg:max-w-screen-md">
+          <div class="p-12">
+            This site requires JavaScript to work properly. You have it disabled, or something else went wrong.
+          </div>
+        </div>
       </div>
     </div>
-    <footer class="bg-gray-50 pt-12 px-6 pb-24">
+    <footer class="bg-gray-50 dark:bg-gray-900 pt-12 px-6 pb-24">
       <div class="text-center">
         <div class="mb-6">Brought to you by <strong>Beatrice Szilvasy</strong>, also known as <strong>Eutro</strong>.</div>
-        <div class="mb-6">
-          <p><a class="text-sky-500 hover:text-sky-700" href="https://github.com/eutro">GitHub</a></p>
+        <div class="mb-6 flex flex-row justify-center space-x-3">
+          <a class="text-sky-500 hover:text-sky-700" href="https://github.com/eutro">GitHub</a>
+          <a class="text-sky-500 hover:text-sky-700" href="https://www.linkedin.com/in/beatrice-szilvasy/">LinkedIn</a>
         </div>
         <div>
           The
