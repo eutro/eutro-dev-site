@@ -74,11 +74,11 @@ function IconOf(url, name) {
       Icon, props,
       e("img", {
         className: classes(
-          "transition motion-reduce:transition-none duration-500",
+          "material-icons transition motion-reduce:transition-none duration-500",
           props.down && "rotate-[360deg]",
         ),
         src: url,
-        alt: "v",
+        alt: "arrow_drop_down",
         "aria-label": name,
       }));
   };
@@ -190,7 +190,7 @@ function Games(props) {
     }),
     e(DropdownCard, {
       "title": "Evaluation Order",
-      "icon": DefaultIcon,
+      "icon": IconOf("https://eutro.github.io/evaluation-order/icon.svg", "Evaluation Order icon"),
       "body": [e("h1", {className:"text-3xl font-semibold mb-6",style:{fontFamily: "monospace"}}, "Evaluation Order"),
                e(Caption, null, "A game about lists, functions and enlightenment.")],
       "links": [{"text":"Play","url":"https://evaluation-order.eutro.dev"},
@@ -228,7 +228,8 @@ function OtherThings(props) {
                e(Block, null,
                  "Run small reusable snippets of ",
                  e(Link, {href:"https://racket-lang.org"}, "Racket"),
-                 " code in your browser.")],
+                 " code in your browser.",
+                 " It's also a Discord bot I guess.")],
       "links": [{"text":"Try","url":"https://r16.eutro.dev"},
                 {"text":"Source Code","url":"https://sr.ht/~williewillus/r16"}],
     }),
@@ -263,7 +264,18 @@ function OtherThings(props) {
                          src: mod.icon,
                        }))})))),
                e(Block, null, "I've made a number of Minecraft mods, check them out and download them from CurseForge!")],
-      "links": [{"text": "CurseForge","url":"https://www.curseforge.com/members/eutropium/projects"}]
+      "links": [{"text": "CurseForge", "url": "https://www.curseforge.com/members/eutropium/projects"}]
+    }),
+    e(DropdownCard, {
+      "title": "Touch Grass",
+      "icon": DefaultIcon,
+      "body": [e(Block, null,
+                 "If you've finally decided to leave your home for the first time in a while, ",
+                 "you may find the big Outside intimidating and difficult to navigate. ",
+                 "This web app will help locate nearby parks for you, so you can go outside and, crucially, touch grass – ",
+                 "possibly for the first time in months."),
+               e(Block, null, "Your location will be requested, for obvious reasons, and won't be stored.")],
+      "links": [{"text": "Touch Grass", "url": "https://eutro.dev/touch_grass"}],
     }),
   );
 }
@@ -297,7 +309,7 @@ function Music(props) {
     }),
     e(DropdownCard, {
       "title": "Evaluation Order \"OST\"",
-      "icon": DefaultIcon,
+      "icon": IconOf("https://eutro.github.io/evaluation-order/icon.svg", "Evaluation Order icon"),
       "body": [e(Block, null, "Included in ", e(Link, {href:"https://evaluation-order.eutro.dev"}, "Evaluation Order"), "."),
                e(Track, {"sources":[{"src": "https://evaluation-order.eutro.dev/audio/loop0.wav",
                                      "type": "audio/wav"}]}),
