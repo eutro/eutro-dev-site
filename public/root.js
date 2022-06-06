@@ -270,7 +270,7 @@ function OtherThings(props) {
       "title": "Touch Grass",
       "icon": DefaultIcon,
       "body": [e(Block, null,
-                 "If you've finally decided to leave your home for the first time in a while, ",
+                 "If you've been cooped up inside for a long time, ",
                  "you may find the big Outside intimidating and difficult to navigate. ",
                  "This web app will help locate nearby parks for you, so you can go outside and, crucially, touch grass – ",
                  "possibly for the first time in months."),
