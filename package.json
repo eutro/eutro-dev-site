@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Home to Eutro and its things.",
   "scripts": {
-    "dev": "tailwindcss --watch --minify --input ./src/style.css --output ./public/style.css",
+    "dev": "concurrently --kill-others-on-fail npm:watch-* npm:serve",
+    "watch-css": "tailwindcss --watch --minify --input ./src/style.css --output ./public/style.css",
     "serve": "cd public && serve"
   },
   "repository": {
@@ -17,7 +18,8 @@
   },
   "homepage": "https://eutro.dev",
   "devDependencies": {
-    "serve": "^13.0.2",
+    "concurrently": "^7.4.0",
+    "serve": "^14.0.1",
     "tailwindcss": "^3.0.24"
   }
 }
