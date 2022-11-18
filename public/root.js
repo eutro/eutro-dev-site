@@ -36,7 +36,8 @@ function License(props) {
   let licenses = {
     "MIT": {"url": "https://opensource.org/licenses/mit-license.php"},
     "CC0": {"url": "http://creativecommons.org/publicdomain/zero/1.0/"},
-    "CC-BY-4.0": {"url": "https://creativecommons.org/licenses/by/4.0/"},
+    "CC BY 4.0": {"url": "https://creativecommons.org/licenses/by/4.0/"},
+    "CC BY-SA 4.0": {"url": "https://creativecommons.org/licenses/by-sa/4.0/"},
   };
   let license = licenses[props.license];
   return e(
@@ -170,11 +171,22 @@ function Games(props) {
     {title: "Games"},
     e(Block, null, "Here are some games I've made, you can play them all in your browser!"),
     e(DropdownCard, {
+      "title": "Composure",
+      "icon": IconOf("https://composure.eutro.dev/icon.png", "Composure icon"),
+      "body": [e(BlockImg, {"src": "https://composure.eutro.dev/title.svg", "aria-label": "Composure logo"}),
+               e(Caption, null, "Compose your thoughts and functions. You'll be alright."),
+               e(Block, null,
+                 "For the best experience, it is recommended that you play the downloadable version. ",
+                 "Mobile platforms are also unfortunately not supported.")],
+      "links": [{"text":"Download","url":"https://github.com/eutro/composure/releases/tag/1.0.0"},
+                {"text":"Play","url":"https://composure.eutro.dev"},
+                {"text":"Source Code","url":"https://github.com/eutro/composure"}]
+    }),
+    e(DropdownCard, {
       "title": "Semantic Construct",
       "icon": IconOf("https://semantic-construct.eutro.dev/assets/icon.png", "Semantic Construct icon"),
       "body": [e(Block, null,
-                 e(
-                   "svg", {height: "72px", width: "138px", viewBox: "0 0 138 72", xmlns: "http://www.w3.org/2000/svg",
+                 e("svg", {height: "72px", width: "138px", viewBox: "0 0 138 72", xmlns: "http://www.w3.org/2000/svg",
                            "aria-label": "Semantic Construct logo"},
                    e("text", {
                      style: {fontFamily: "Arial, sans-serif", fontSize: "28px", whiteSpace: "pre"},
@@ -300,6 +312,35 @@ function Music(props) {
     {"title":"Music"},
     e("div", {className:"mb-6"}, "I make music sometimes too."),
     e(DropdownCard, {
+      "title": "Composure OST",
+      "icon": IconOf("https://composure.eutro.dev/icon.png", "Composure icon"),
+      "body": [e(Block, null, "Included in ", e(Link, {href:"https://composure.eutro.dev"}, "Composure"), "."),
+               e(Block, null,
+                 "Stream on ", e(Link, {href:"https://open.spotify.com/album/6UnKYWVt2Q7DRZwdYLFmie"}, "Spotify"),
+                 ", ", e(Link, {href:"https://music.apple.com/gb/album/composure-original-video-game-soundtrack-ep/1653015569"},
+                         "Apple Music"),
+                 ", ", e(Link, {href:"https://music.amazon.co.uk/albums/B0BLXMCHNX?marketplaceId=A1F83G8C2ARO7P"}, "Amazon Music"),
+                 ", or ", e(Link, {href:"https://deezer.page.link/F87bYUgjvoBJuBbJ7"}, "Deezer"),
+                 ", or just download the files below."),
+               e(React.Fragment, null,
+                 [{tt:"first",nm:"First"},
+                  {tt:"rest",nm:"Rest"},
+                  {tt:"persistence",nm:"Persistence"},
+                  {tt:"transience",nm:"Transience"},
+                  {tt:"red_tears",nm:"Red Tears"},
+                  {tt:"main_menu",nm:"Title Theme"}]
+                 .map(it =>
+                   e(React.Fragment, null,
+                     e("p", {className:"text-xl font-bold mb-2"}, it.nm),
+                     e(Track, {"sources":[{"src": `https://eutro.dev/music/composure/${it.tt}.opus`,
+                                           "type": "audio/ogg"},
+                                          {"src": `https://eutro.dev/music/composure/${it.tt}.ogg`,
+                                           "type": "audio/ogg"},
+                                          {"src": `https://eutro.dev/music/composure/${it.tt}.flac`,
+                                           "type": "audio/flac"}]})))),
+               e(License, {"license":"CC BY-SA 4.0"})],
+    }),
+    e(DropdownCard, {
       "title": "Semantic Construct \"OST\"",
       "icon": IconOf("https://semantic-construct.eutro.dev/assets/icon.png", "Semantic Construct icon"),
       "body": [e(Block, null, "Included in ", e(Link, {href:"https://semantic-construct.eutro.dev"}, "Semantic Construct"), "."),
@@ -331,7 +372,7 @@ function Music(props) {
                e(Track, {"sources": [{"src": "/music/2021-12-05.wav", "type": "audio/wav"},
                                      {"src": "/music/2021-12-05.mp3", "type": "audio/mpeg"}],
                          "title": "2021-12-05"}),
-               e(License, {"license":"CC-BY-4.0"})],
+               e(License, {"license":"CC BY 4.0"})],
     }),
   );
 }
