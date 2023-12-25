@@ -169,7 +169,9 @@ function Games(props) {
   return e(
     Section,
     {title: "Games"},
-    e(Block, null, "Here are some games I've made, you can play them all in your browser!"),
+    e(Block, null, "Here are some games I've made for ",
+      e(Link, {"href":"https://itch.io/jams"}, "game jams"),
+      ", you can play them all in your browser!"),
     e(DropdownCard, {
       "title": "Composure",
       "icon": IconOf("https://composure.eutro.dev/icon.png", "Composure icon"),
@@ -224,7 +226,15 @@ function Home(props) {
   return e(
     Section,
     {title: "Home"},
-    e(Block, null, "Hello! This is my site for me to showcase a few of my cool projects publicly."),
+    e(Block, null, "Welcome to my website, see above for some of my projects."),
+    e(Block, null,
+      e("h2", {className: "text-xl text-slate-700 dark:text-slate-100 font-bold mb-2"}, "Find me on"),
+      e(Block, {className: "pl-6"},
+        e("ul",
+          {className: "list-disc"},
+          e("li", null, e(Link, {"href":"https://github.com/eutro"}, "GitHub")),
+          e("li", null, e(Link, {"href":"https://linkedin.com/in/beatrice-szilvasy/"}, "LinkedIn")),
+          e("li", null, e(Link, {"href":"https://eutro.itch.io/"}, "itch.io")))))
   );
 }
 
@@ -310,7 +320,7 @@ function Music(props) {
   return e(
     Section,
     {"title":"Music"},
-    e("div", {className:"mb-6"}, "I make music sometimes too."),
+    e("div", {className:"mb-6"}, "I write music sometimes too."),
     e(DropdownCard, {
       "title": "Composure OST",
       "icon": IconOf("https://composure.eutro.dev/icon.png", "Composure icon"),
