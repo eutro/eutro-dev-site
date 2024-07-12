@@ -9,7 +9,7 @@ const tabs = [
   {
     component: Home,
     title: "Home",
-    href: "/"
+    href: ""
   },
   {
     component: Games,
@@ -31,7 +31,7 @@ const tabs = [
 export type SubpageLocation = { pathname: string, hash?: string }
 export function detectSubpage({pathname, hash}: SubpageLocation) {
   const pageTarget = pathname + (hash?.substring(1) ?? "");
-  const idx = tabs.findIndex(({ href }) => href !== "/" && pageTarget.includes(href));
+  const idx = tabs.findIndex(({ href }) => href !== "" && pageTarget.includes(href));
   return idx === -1 ? 0 : idx;
 }
 

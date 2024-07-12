@@ -50,15 +50,15 @@ export default function Music(_props: {}) {
                 title={nm}
                 sources={[
                   {
-                    src: `https://eutro.dev/music/composure/${tt}.opus`,
+                    src: `https://eutro.dev/music-files/composure/${tt}.opus`,
                     type: "audio/ogg"
                   },
                   {
-                    src: `https://eutro.dev/music/composure/${tt}.ogg`,
+                    src: `https://eutro.dev/music-files/composure/${tt}.ogg`,
                     type: "audio/ogg"
                   },
                   {
-                    src: `https://eutro.dev/music/composure/${tt}.flac`,
+                    src: `https://eutro.dev/music-files/composure/${tt}.flac`,
                     type: "audio/flac"
                   }
                 ]}
@@ -101,17 +101,17 @@ export default function Music(_props: {}) {
         icon={DefaultIcon}>
         <Block>Some untitled doodles.</Block>
         <Track title="2022-02-26" sources={[
-          {"src": "/music/2022-02-26.ogg", "type": "audio/ogg"},
-          {"src": "/music/2022-02-26.wav", "type": "audio/wav"},
-          {"src": "/music/2022-02-26.mp3", "type": "audio/mpeg"}
+          {"src": "https://eutro.dev/music-files/2022-02-26.ogg", "type": "audio/ogg"},
+          {"src": "https://eutro.dev/music-files/2022-02-26.wav", "type": "audio/wav"},
+          {"src": "https://eutro.dev/music-files/2022-02-26.mp3", "type": "audio/mpeg"}
         ]}/>
         <Track title="2022-02-06" sources={[
-          {"src": "/music/2022-02-06.wav", "type": "audio/wav"},
-          {"src": "/music/2022-02-06.mp3", "type": "audio/mpeg"}
+          {"src": "https://eutro.dev/music-files/2022-02-06.wav", "type": "audio/wav"},
+          {"src": "https://eutro.dev/music-files/2022-02-06.mp3", "type": "audio/mpeg"}
         ]}/>
         <Track title="2021-12-05" sources={[
-          {"src": "/music/2021-12-05.wav", "type": "audio/wav"},
-          {"src": "/music/2021-12-05.mp3", "type": "audio/mpeg"}
+          {"src": "https://eutro.dev/music-files/2021-12-05.wav", "type": "audio/wav"},
+          {"src": "https://eutro.dev/music-files/2021-12-05.mp3", "type": "audio/mpeg"}
         ]}/>
         <License license="CC BY 4.0"/>
       </DropdownCard>

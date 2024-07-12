@@ -31,7 +31,7 @@ export default function Navbar({tabs, subpage, setSubpage}: {
         burgerActive ? "opacity-100 max-h-[100vh]" : "opacity-0 md:opacity-100 max-h-0"
       )}>
         {tabs.map((tab, i) => (
-          <a key={i} href={tab.href} className={cc(
+          <a key={i} href={"/" + tab.href} className={cc(
               "p-2 mb-3 md:mt-auto md:rounded-t my-auto md:ml-3 md:mb-0",
               subpage === i
                   ? "bg-white dark:bg-slate-800"
