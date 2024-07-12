@@ -1,5 +1,11 @@
-module.exports = {
-  content: ["./public/*.{html,js}"],
+import type { Config } from 'tailwindcss'
+
+export default {
+  content: [
+    "./index.html",
+    "./{src,resources}/*.{html,js,ts,tsx}",
+    "./{src,resources}/**/*.{html,js,ts,tsx}"
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -26,4 +32,5 @@ module.exports = {
     },
   },
   plugins: [],
-}
+} satisfies Config
+
