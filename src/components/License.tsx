@@ -8,15 +8,17 @@ const LICENSES = {
 } as const;
 
 export default function License(props: {
-  license: keyof typeof LICENSES | "ARR"
+  license: keyof typeof LICENSES | "ARR",
+  inline?: boolean
 }) {
   if (props.license === "ARR") {
     return <Block>All rights reserved</Block>;
   }
   let license = LICENSES[props.license];
+  const link = <Link href={license.url}>{props.license}</Link>;
   return (
-    <Block>
-      License: <Link href={license.url}>{props.license}</Link>
-    </Block>
+    props.inline ?
+      <span>{link} license</span> :
+      <Block>License: {link}</Block>
   )
 }

@@ -1,23 +1,41 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState, ElementType, PropsWithChildren, ComponentProps } from "react";
 import { cc } from "./utils";
 import { Icon, MatIcon } from "./simple";
 
 // "do we have to match the SSR content"
 export const IsHydrating = createContext(true);
+export const SubpageState = createContext({
+  subpage: 0,
+  setSubpage: (_evt: React.MouseEvent<HTMLAnchorElement>, _subpage: number) => {},
+  tabs: [] as { href: string, title: string }[]
+});
 
-export default function Navbar({tabs, subpage, setSubpage}: {
-  tabs: { href: string, title: string }[],
-  subpage: number,
-  setSubpage: (evt: React.MouseEvent<HTMLAnchorElement>, subpage: number) => void
-}) {
+export function SubpageLink<T extends ElementType<{href?: string}, "a">>(
+  { Link, children, subpage, ...props }:
+  PropsWithChildren<{subpage: number, Link: T} & Omit<ComponentProps<T>, "href" | "onClick">>
+) {
+  const {tabs, setSubpage} = useContext(SubpageState);
+  const AnyLink = Link as any;
+  return (
+    <AnyLink
+      href={"/" + tabs[subpage].href}
+      onClick={(evt: React.MouseEvent<HTMLAnchorElement>) => setSubpage(evt, subpage)}
+      {...props}>
+      {children}
+    </AnyLink>
+  );
+}
+
+export default function Navbar() {
   const [burgerActive, setBurgerActive] = useState(false);
+  const {tabs, subpage} = useContext(SubpageState);
   return (
     <div className={cc(
       "bg-gray-100 dark:bg-gray-900 dark:text-white",
       "px-2 flex align-center relative"
     )}>
       <Icon className="w-12 h-12 p-1 my-2 bg-white dark:bg-slate-700 rounded-full">
-        <a href="/"><img src="/favicon.ico" title="logo"/></a>
+        <SubpageLink Link="a" subpage={0}><img src="/favicon.ico" title="logo"/></SubpageLink>
       </Icon>
       <div className={cc(
         "bg-gray-100 dark:bg-gray-900 w-full absolute bottom-0 z-10 flex",
@@ -31,16 +49,15 @@ export default function Navbar({tabs, subpage, setSubpage}: {
         burgerActive ? "opacity-100 max-h-[100vh]" : "opacity-0 md:opacity-100 max-h-0"
       )}>
         {tabs.map((tab, i) => (
-          <a key={i} href={"/" + tab.href} className={cc(
+          <SubpageLink Link="a" key={i} subpage={i} className={cc(
               "p-2 mb-3 md:mt-auto md:rounded-t my-auto md:ml-3 md:mb-0",
               subpage === i
                   ? "bg-white dark:bg-slate-800"
                   : ["bg-teal-200 hover:bg-teal-100",
                       "dark:bg-teal-700 dark:hover:bg-teal-900"],
-          )}
-            onClick={(evt) => setSubpage(evt, i)}>
+          )}>
             {tab.title}
-          </a>
+          </SubpageLink>
         ))}
       </div>
       <button

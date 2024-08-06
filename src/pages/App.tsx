@@ -3,7 +3,9 @@ import Games from "./Games";
 import Home from "./Home";
 import OtherThings from "./Misc";
 import Music from "./Music";
-import Navbar, { IsHydrating } from "../components/Navbar";
+import NotFound from "./404";
+import Footer from "./Footer"
+import Navbar, { IsHydrating, SubpageState } from "../components/Navbar";
 
 const tabs = [
   {
@@ -25,14 +27,20 @@ const tabs = [
     component: OtherThings,
     title: "Other Projects",
     href: "others"
-  },
+  }
 ];
+
+const NotFoundTab = {
+  component: NotFound,
+  title: "Not Found",
+  href: "404.html"
+};
 
 export type SubpageLocation = { pathname: string, hash?: string }
 export function detectSubpage({pathname, hash}: SubpageLocation) {
   const pageTarget = pathname + (hash?.substring(1) ?? "");
-  const idx = tabs.findIndex(({ href }) => href !== "" && pageTarget.includes(href));
-  return idx === -1 ? 0 : idx;
+  if (!pageTarget || pageTarget === "/") return 0;
+  return tabs.findIndex(({ href }) => pageTarget === "/" + href);
 }
 
 export default function App({initLocation}: { initLocation?: SubpageLocation }) {
@@ -66,16 +74,20 @@ export default function App({initLocation}: { initLocation?: SubpageLocation }) 
     return () => window.removeEventListener("popstate", listener);
   }, [setSubpageInternal])
 
-  const CurrentTab = tabs[subpage].component;
+  const tab = tabs[subpage] ?? NotFoundTab;
+  const CurrentTab = tab.component;
   return (
     <>
       <IsHydrating.Provider value={isHydrating}>
-        <Navbar subpage={subpage} setSubpage={setSubpage} tabs={tabs}/>
-        <div className="bg-white dark:bg-slate-800">
-          <div className="mx-auto 2xl:max-w-screen-xl xl:max-w-screen-lg lg:max-w-screen-md">
-            <CurrentTab/>
+        <SubpageState.Provider value={{ subpage, setSubpage, tabs }}>
+          {tab !== NotFoundTab && <Navbar/>}
+          <div className="bg-white dark:bg-slate-800">
+            <div className="mx-auto 2xl:max-w-screen-xl xl:max-w-screen-lg lg:max-w-screen-md">
+              <CurrentTab/>
+            </div>
           </div>
-        </div>
+          <Footer/>
+        </SubpageState.Provider>
       </IsHydrating.Provider>
     </>
   );
