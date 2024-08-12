@@ -82,11 +82,11 @@ export default function App({initLocation}: { initLocation?: SubpageLocation }) 
       <IsHydrating.Provider value={isHydrating}>
         <SubpageState.Provider value={{ subpage, setSubpage, tabs }}>
           {tab !== NotFoundTab && <Navbar/>}
-          <div className="bg-white dark:bg-slate-800">
+          <main className="bg-white dark:bg-slate-800">
             <div className="mx-auto 2xl:max-w-screen-xl xl:max-w-screen-lg lg:max-w-screen-md">
               <CurrentTab/>
             </div>
-          </div>
+          </main>
           <Footer/>
         </SubpageState.Provider>
       </IsHydrating.Provider>

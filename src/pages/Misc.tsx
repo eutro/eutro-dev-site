@@ -17,6 +17,8 @@ function ModIcon(mod: { name: string, slug: string, avatar: string }) {
           "motion-reduce:md:hover:h-[110px] motion-reduce:md:hover:w-[110px]",
           "transition-all ease-in motion-reduce:duration-100"
         )}
+        height="100"
+        width="100"
         src={`https://media.forgecdn.net/avatars/${mod.avatar}.png`}
       />
     </a>
@@ -51,7 +53,9 @@ export default function OtherThings(_props: {}) {
           <div className="flex justify-center">
             <div className="flex flex-col space-y-3 md:flex-row md:space-x-3 md:space-y-0 justify-center">
               <ModIcon slug="l12n" name="lOwOcalizatiωn" avatar="536/802/637859175423971845" />
+              {" "}
               <ModIcon slug="framed-compacting-drawers" name="Framed Compacting Drawers" avatar="264/387/637226486288344415" />
+              {" "}
               <ModIcon slug="multiblocktweaker" name="MultiblockTweaker" avatar="288/979/637313657690108479" />
             </div>
           </div>

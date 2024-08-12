@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ElementType, PropsWithChildren, ComponentProps } from "react";
+import { createContext, useContext, useState, ElementType, PropsWithChildren, ComponentProps, Fragment } from "react";
 import { cc } from "./utils";
 import { Icon, MatIcon } from "./simple";
 
@@ -27,55 +27,82 @@ export function SubpageLink<T extends ElementType<{href?: string}, "a">>(
 }
 
 export default function Navbar() {
+  // TODO: it might be worth separating out the desktop and mobile
+  // navbar here, it is difficult to reason about if the difference is
+  // pure CSS, and also has issues, e.g. tabbing order. The mobile
+  // navbar is disabled without JavaScript anyway.
+
   const [burgerActive, setBurgerActive] = useState(false);
   const {tabs, subpage} = useContext(SubpageState);
+  const isHydrating = useContext(IsHydrating);
   return (
-    <div className={cc(
+    <nav className={cc(
       "bg-gray-100 dark:bg-gray-900 dark:text-white",
       "px-2 flex align-center relative"
     )}>
       <Icon className="w-12 h-12 p-1 my-2 bg-white dark:bg-slate-700 rounded-full">
-        <SubpageLink Link="a" subpage={0}><img src="/favicon.ico" title="logo"/></SubpageLink>
+        <SubpageLink Link="a" subpage={0}><img src="/favicon.ico" title="logo" width="40" height="40"/></SubpageLink>
       </Icon>
-      <div className={cc(
+      <span className={cc(
         "bg-gray-100 dark:bg-gray-900 w-full absolute bottom-0 z-10 flex",
-        "flex-col md:flex-row",
-        "md:inline-flex",
-        "translate-y-full md:translate-y-0",
-        "-ml-2 md:ml-0",
-        "md:left-14",
-        "md:max-h-fit",
+        isHydrating
+          ? "ml-0 left-14 max-h-fit inline-flex flex-row translate-y-0"
+          : "translate-y-full flex-col -ml-2 md:ml-0 md:left-14 md:max-h-fit md:inline-flex md:flex-row md:translate-y-0",
         "overflow-hidden transition-[opacity,max-height]",
-        burgerActive ? "opacity-100 max-h-[100vh]" : "opacity-0 md:opacity-100 max-h-0"
+        burgerActive
+          ? "opacity-100 max-h-[100vh]"
+          : (isHydrating
+            ? "opacity-100"
+            : "opacity-0 max-h-0 md:opacity-100")
       )}>
         {tabs.map((tab, i) => (
-          <SubpageLink Link="a" key={i} subpage={i} className={cc(
-              "p-2 mb-3 md:mt-auto md:rounded-t my-auto md:ml-3 md:mb-0",
+          <Fragment key={i}>
+            <SubpageLink Link="a" subpage={i} className={cc(
+              "p-2",
+              isHydrating
+                ? "mt-auto rounded-t ml-3 mb-0"
+                : "mb-3 my-auto md:mt-auto md:rounded-t md:ml-3 md:mb-0",
               subpage === i
-                  ? "bg-white dark:bg-slate-800"
-                  : ["bg-teal-200 hover:bg-teal-100",
-                      "dark:bg-teal-700 dark:hover:bg-teal-900"],
-          )}>
-            {tab.title}
-          </SubpageLink>
+                ? "bg-white dark:bg-slate-800"
+                : ["bg-teal-200 hover:bg-teal-100",
+                  "dark:bg-teal-700 dark:hover:bg-teal-900"],
+            )}>
+              {tab.title}
+            </SubpageLink>
+            {i !== tabs.length - 1 && <span className="hidden"> / </span>}
+          </Fragment>
         ))}
-      </div>
-      <button
-        className={cc(
-          "w-12 h-12 my-auto cursor-pointer relative ml-auto inline-flex align-center justify-center",
-          "md:hidden"
-        )}
-        onClick={() => setBurgerActive(!burgerActive)}>
-        <MatIcon className={cc(
-          "text-[48px] absolute t-0 l-0 transition duration-100 ease-linear",
-          burgerActive ? "opacity-0" : "opacity-100",
-        )}>menu</MatIcon>
-        <MatIcon className={cc(
-          "text-[48px] absolute t-0 l-0 transition duration-100 ease-linear",
-          burgerActive ? "opacity-100" : "opacity-0",
-        )}>close</MatIcon>
-      </button>
-    </div>
+      </span>
+      {!isHydrating &&
+        <span
+          aria-label="Menu" role="button"
+          tabIndex={0}
+          onKeyDown={(evt) => {
+            if (evt.key === "Enter" || evt.key === " ") {
+              setBurgerActive(!burgerActive);
+            }
+          }}
+          onClick={() => setBurgerActive(!burgerActive)}
+          aria-pressed={burgerActive}
+          className={cc(
+            "w-12 h-12 my-auto cursor-pointer relative ml-auto inline-flex align-center justify-center",
+            "md:hidden"
+          )}>
+          <MatIcon className={cc(
+            "text-[48px] absolute t-0 l-0 transition duration-100 ease-linear",
+            burgerActive ? "opacity-0" : "opacity-100",
+            // menu
+            String.raw`before:content-["\e5d2"]`,
+          )}/>
+          <MatIcon className={cc(
+            "text-[48px] absolute t-0 l-0 transition duration-100 ease-linear",
+            burgerActive ? "opacity-100" : "opacity-0",
+            // close
+            String.raw`before:content-["\e5cd"]`,
+          )}/>
+        </span>}
+      <hr className="hidden"/>
+    </nav>
   );
 }
 

@@ -1,6 +1,6 @@
 import DefaultIcon from "../components/DefaultIcon";
 import DropdownCard from "../components/DropdownCard";
-import IconOf from "../components/IconOf";
+import { iconOf } from "../components/IconOf";
 import License from "../components/License";
 import Section from "../components/Section";
 import { Block, Link } from "../components/simple";
@@ -25,7 +25,7 @@ export default function Music(_props: {}) {
       <div className="mb-6">I write music sometimes.</div>
       <DropdownCard
         title="Composure OST"
-        icon={IconOf("https://composure.eutro.dev/icon.png", "Composure icon")}
+        icon={iconOf("https://composure.eutro.dev/icon.png", "Composure icon")}
       >
         <Block>Included in <Link href="https://composure.eutro.dev">Composure</Link>.</Block>
         <Block>Stream on {""}
@@ -70,7 +70,7 @@ export default function Music(_props: {}) {
 
       <DropdownCard
         title={`Semantic Construct "OST"`}
-        icon={IconOf("https://semantic-construct.eutro.dev/assets/icon.png", "Semantic Construct icon")}
+        icon={iconOf("https://semantic-construct.eutro.dev/assets/icon.png", "Semantic Construct icon")}
       >
         <Block>Included in <Link href="https://semantic-construct.eutro.dev">Semantic Construct</Link>.</Block>
         <Track title="loop1" sources={[{
@@ -82,7 +82,7 @@ export default function Music(_props: {}) {
 
       <DropdownCard
         title={`Evaluation Order "OST"`}
-        icon={IconOf("https://eutro.github.io/evaluation-order/icon.svg", "Evaluation Order icon")}
+        icon={iconOf("https://eutro.github.io/evaluation-order/icon.svg", "Evaluation Order icon")}
       >
         <Block>Included in <Link href="https://evaluation-order.eutro.dev">Evaluation Order</Link>.</Block>
         <Track title="loop0" sources={[{

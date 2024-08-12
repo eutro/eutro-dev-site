@@ -1,19 +1,19 @@
 import DropdownCard from "../components/DropdownCard";
-import IconOf from "../components/IconOf";
+import { iconOf } from "../components/IconOf";
 import Section from "../components/Section";
-import { Block, BlockImg, Caption, Link } from "../components/simple";
+import { Block, Para, BlockImg, Caption, Link } from "../components/simple";
 
 export default function Games(_props: {}) {
   return (
     <Section title="Games">
-      <Block>
+      <Para>
         Here are some games I've made for <Link href="https://itch.io/jams">game jams</Link>
         , you can play them all in your browser!
-      </Block>
+      </Para>
 
       <DropdownCard
         title="Composure"
-        icon={IconOf("https://composure.eutro.dev/icon.png", "Composure icon")}
+        icon={iconOf("https://composure.eutro.dev/icon.png", "Composure icon")}
         links={[
           { text: "Download", url: "https://github.com/eutro/composure/releases/tag/1.0.0" },
           { text: "Play", url: "https://composure.eutro.dev" },
@@ -21,15 +21,15 @@ export default function Games(_props: {}) {
         ]}>
         <BlockImg src="https://composure.eutro.dev/title.svg" aria-label="Composure logo"/>
         <Caption>Compose your thoughts and functions. You'll be alright.</Caption>
-        <Block>
-          For the best experience, it is recommended that you play the downloadable version. {""}
+        <Para>
+          For the best experience, I recommended that you play the downloadable version. {""}
           Mobile platforms are also unfortunately not supported.
-        </Block>
+        </Para>
       </DropdownCard>
 
       <DropdownCard
         title="Semantic Construct"
-        icon={IconOf("https://semantic-construct.eutro.dev/assets/icon.png", "Semantic Construct icon")}
+        icon={iconOf("https://semantic-construct.eutro.dev/assets/icon.png", "Semantic Construct icon")}
         links={[
           { text: "Play", url: "https://semantic-construct.eutro.dev" },
           { text: "Source Code", url: "https://github.com/eutro/semantic-construct" }
@@ -51,7 +51,7 @@ export default function Games(_props: {}) {
 
       <DropdownCard
         title="Evaluation Order"
-        icon={IconOf("https://eutro.github.io/evaluation-order/icon.svg", "Evaluation Order icon")}
+        icon={iconOf("https://eutro.github.io/evaluation-order/icon.svg", "Evaluation Order icon")}
         links={[
           { text: "Play", url: "https://evaluation-order.eutro.dev" },
           { text: "Source Code", url: "https://github.com/eutro/evaluation-order" }
@@ -64,7 +64,7 @@ export default function Games(_props: {}) {
 
       <DropdownCard
         title="Kutyagumi"
-        icon={IconOf("https://kutyagumi.eutro.dev/icon.png", "Kutyagumi icon")}
+        icon={iconOf("https://kutyagumi.eutro.dev/icon.png", "Kutyagumi icon")}
         links={[
           { text: "More Info", url: "https://github.com/eutro/kutyagumi/#readme"},
           { text: "Play", url: "https://kutyagumi.eutro.dev"},

@@ -7,10 +7,10 @@ export default function DefaultIcon({down, ...props}: UtilProps<"span"> & { down
       <MatIcon
         className={cc(
           "transition motion-reduce:transition-none duration-500",
-          down && "-scale-y-100"
-        )}>
-        arrow_drop_down
-      </MatIcon>
+          down && "-scale-y-100",
+          // arrow_drop_down
+          String.raw`before:content-["\e5c5"]`,
+        )}/>
     </Icon>
   )
 }

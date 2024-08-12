@@ -1,7 +1,7 @@
 import { Icon } from "./simple";
 import { cc, UtilProps } from "./utils";
 
-export default function IconOf(url: string, name: string) {
+export function iconOf(url: string, name: string) {
   return function({down, ...props}: UtilProps<"span"> & { down: boolean }) {
     return (
       <Icon {...props}>
@@ -10,8 +10,10 @@ export default function IconOf(url: string, name: string) {
             "material-icons transition motion-reduce:transition-none duration-500",
             down && "rotate-[360deg]"
           )}
+          width="24"
+          height="24"
           src={url}
-          alt="arrow_drop_down"
+          alt="v"
           aria-label={name}/>
       </Icon>
     )

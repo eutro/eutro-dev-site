@@ -23,7 +23,7 @@ export function cc(...cs: Classes[]): string {
 }
 
 type IntrinsicsKey = ["div", "span", "p", "h1", "h2", "h3",
- "button", "dl", "ul", "ol", "i", "a", "img"][number]
+ "button", "dl", "ul", "ol", "i", "a", "img", "section"][number]
 export type UtilProps<N extends IntrinsicsKey> = React.JSX.IntrinsicElements[N]
 
 export function Util<N extends IntrinsicsKey>(
