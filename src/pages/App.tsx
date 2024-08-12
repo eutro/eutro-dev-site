@@ -38,9 +38,10 @@ const NotFoundTab = {
 
 export type SubpageLocation = { pathname: string, hash?: string }
 export function detectSubpage({pathname, hash}: SubpageLocation) {
-  const pageTarget = pathname + (hash?.substring(1) ?? "");
-  if (!pageTarget || pageTarget === "/") return 0;
-  return tabs.findIndex(({ href }) => pageTarget === "/" + href);
+  let pageTarget = pathname + (hash?.substring(1) ?? "");
+  pageTarget = pageTarget.replace(/\//g, "");
+  if (!pageTarget) return 0;
+  return tabs.findIndex(({ href }) => pageTarget === href);
 }
 
 export default function App({initLocation}: { initLocation?: SubpageLocation }) {
