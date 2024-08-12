@@ -27,9 +27,9 @@ async function main(sourceDir, distDir) {
 
   const allRoutes = [
     { loc: "/", dst: "." },
-    { loc: "games" },
-    { loc: "music" },
-    { loc: "others" },
+    { loc: "/games" },
+    { loc: "/music" },
+    { loc: "/others" },
     { loc: "404.html", dst: ".", name: "404.html", title: "404 Not Found" },
   ];
 
