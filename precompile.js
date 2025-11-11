@@ -1,6 +1,6 @@
-import { renderApp } from "./dist/server/entry-server.js"
-import fsp from "node:fs/promises"
-import path from "node:path"
+import { renderApp } from "./dist/server/entry-server.js";
+import fsp from "node:fs/promises";
+import path from "node:path";
 
 async function main(sourceDir, distDir) {
   await fsp.cp(sourceDir, distDir, {
@@ -19,7 +19,7 @@ async function main(sourceDir, distDir) {
 
     const obj = {
       title: `<title>${title ?? "Eutro"}</title>`,
-      get app() { return renderApp({ path: loc }) },
+      get app() { return renderApp({ path: loc }); },
     };
     await fsp.writeFile(outFile, template.replace(pat, (_, name) => obj[name]));
     console.log(`Rendered ${loc}`);
@@ -36,4 +36,4 @@ async function main(sourceDir, distDir) {
   await Promise.all(allRoutes.map(exportRoute));
 }
 
-main("dist/client", "dist/finished")
+main("dist/client", "dist/finished");

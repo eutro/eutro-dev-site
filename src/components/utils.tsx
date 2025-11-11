@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef } from 'react';
 
 export type Classes = string | Classes[] | false | undefined | null
 function cc0(sb: { v: string, empty: boolean }, cs: Classes) {
@@ -16,6 +16,7 @@ function cc0(sb: { v: string, empty: boolean }, cs: Classes) {
     cc0(sb, c);
   }
 }
+
 export function cc(...cs: Classes[]): string {
   const sb = { v: "", empty: true };
   cc0(sb, cs);
@@ -26,7 +27,7 @@ type IntrinsicsKey = ["div", "span", "p", "h1", "h2", "h3",
  "button", "dl", "ul", "ol", "i", "a", "img", "section"][number]
 export type UtilProps<N extends IntrinsicsKey> = React.JSX.IntrinsicElements[N]
 
-export function Util<N extends IntrinsicsKey>(
+export function utilBody<N extends IntrinsicsKey>(
   what: N,
   props: UtilProps<N>,
   className: string,
@@ -44,7 +45,7 @@ export function mkUtil<N extends IntrinsicsKey>(
   what: N,
   className: string,
 ) {
-  const fwd = forwardRef((props: UtilProps<N>, ref) => Util(what, props, className, ref));
+  const fwd = forwardRef((props: UtilProps<N>, ref) => utilBody(what, props, className, ref));
   fwd.displayName = name;
   return fwd;
 }

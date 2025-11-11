@@ -4,7 +4,7 @@ import { iconOf } from "../components/IconOf";
 import License from "../components/License";
 import Section from "../components/Section";
 import { Block, Link } from "../components/simple";
-import { Fragment } from "react"
+import { Fragment } from "react";
 
 function Track(props: { title: string, sources: React.JSX.IntrinsicElements["source"][] }) {
   return (
@@ -19,7 +19,7 @@ function Track(props: { title: string, sources: React.JSX.IntrinsicElements["sou
   );
 }
 
-export default function Music(_props: {}) {
+export default function Music(_props: Record<string, never>) {
   return (
     <Section title="Music">
       <div className="mb-6">I write music sometimes.</div>

@@ -22,10 +22,10 @@ function ModIcon(mod: { name: string, slug: string, avatar: string }) {
         src={`https://media.forgecdn.net/avatars/${mod.avatar}.png`}
       />
     </a>
-  )
+  );
 }
 
-export default function OtherThings(_props: {}) {
+export default function OtherThings(_props: Record<string, never>) {
   return (
     <Section title="Other Projects">
       <Block>An assortment of my other projects.</Block>

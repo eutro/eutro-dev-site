@@ -12,5 +12,5 @@ export default function DefaultIcon({down, ...props}: UtilProps<"span"> & { down
           String.raw`before:content-["\e5c5"]`,
         )}/>
     </Icon>
-  )
+  );
 }

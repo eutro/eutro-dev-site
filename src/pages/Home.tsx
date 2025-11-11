@@ -1,7 +1,7 @@
 import Section from "../components/Section";
 import { Block, Link } from "../components/simple";
 
-export default function Home(_props: {}) {
+export default function Home(_props: Record<string, never>) {
   return (
     <Section title="Home">
       <Block>Welcome to my website, see above for some of my projects.</Block>

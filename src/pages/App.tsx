@@ -4,8 +4,9 @@ import Home from "./Home";
 import OtherThings from "./Misc";
 import Music from "./Music";
 import NotFound from "./404";
-import Footer from "./Footer"
-import Navbar, { IsHydrating, SubpageState } from "../components/Navbar";
+import Footer from "./Footer";
+import Navbar from "../components/Navbar";
+import { IsHydrating, SubpageState } from "../components/context";
 
 const tabs = [
   {
@@ -36,8 +37,8 @@ const NotFoundTab = {
   href: "404.html"
 };
 
-export type SubpageLocation = { pathname: string, hash?: string }
-export function detectSubpage({pathname, hash}: SubpageLocation) {
+export interface SubpageLocation { pathname: string, hash?: string }
+function detectSubpage({pathname, hash}: SubpageLocation) {
   let pageTarget = pathname + (hash?.substring(1) ?? "");
   pageTarget = pageTarget.replace(/\//g, "");
   if (!pageTarget) return 0;
@@ -46,7 +47,7 @@ export function detectSubpage({pathname, hash}: SubpageLocation) {
 
 export default function App({initLocation}: { initLocation?: SubpageLocation }) {
   const [subpage, setSubpageInternal] = useState(() => {
-    const page = detectSubpage(initLocation ?? document.location)
+    const page = detectSubpage(initLocation ?? document.location);
     if (!import.meta.env.SSR) {
       history.replaceState(page, "", String(document.location));
     }
@@ -54,7 +55,10 @@ export default function App({initLocation}: { initLocation?: SubpageLocation }) 
   });
 
   const [isHydrating, setHydrating] = useState(true);
-  useEffect(() => { setHydrating(false); })
+  // I want to change state after the first time the page is rendered,
+  // for which I use an effect (which isn't run in SSR).
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setHydrating(false), []);
 
   // we do a little client-side routing
   const setSubpage = (evt: React.MouseEvent<HTMLAnchorElement>, page: number) => {
@@ -68,12 +72,12 @@ export default function App({initLocation}: { initLocation?: SubpageLocation }) 
   useEffect(() => {
     const listener = ({state}: PopStateEvent) => {
       if (typeof state === "number") {
-        setSubpageInternal(state)
+        setSubpageInternal(state);
       }
     };
     window.addEventListener("popstate", listener);
     return () => window.removeEventListener("popstate", listener);
-  }, [setSubpageInternal])
+  }, [setSubpageInternal]);
 
   const tab = tabs[subpage] ?? NotFoundTab;
   const CurrentTab = tab.component;

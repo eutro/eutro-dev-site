@@ -1,20 +1,15 @@
-import { createContext, useContext, useState, ElementType, PropsWithChildren, ComponentProps, Fragment } from "react";
+import { useContext, useState, ElementType, PropsWithChildren, ComponentProps, Fragment } from "react";
 import { cc } from "./utils";
 import { Icon, MatIcon } from "./simple";
-
-// "do we have to match the SSR content"
-export const IsHydrating = createContext(true);
-export const SubpageState = createContext({
-  subpage: 0,
-  setSubpage: (_evt: React.MouseEvent<HTMLAnchorElement>, _subpage: number) => {},
-  tabs: [] as { href: string, title: string }[]
-});
+import { IsHydrating, SubpageState } from "./context";
 
 export function SubpageLink<T extends ElementType<{href?: string}, "a">>(
   { Link, children, subpage, ...props }:
   PropsWithChildren<{subpage: number, Link: T} & Omit<ComponentProps<T>, "href" | "onClick">>
 ) {
   const {tabs, setSubpage} = useContext(SubpageState);
+  // I do not care
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const AnyLink = Link as any;
   return (
     <AnyLink
@@ -41,7 +36,7 @@ export default function Navbar() {
       "px-2 flex align-center relative"
     )}>
       <Icon className="w-12 h-12 p-1 my-2 bg-white dark:bg-slate-700 rounded-full">
-        <SubpageLink Link="a" subpage={0}><img src="/favicon.ico" title="logo" width="40" height="40"/></SubpageLink>
+        <SubpageLink Link="a" subpage={0}><img src="/favicon.ico" title="logo" width="50" height="50"/></SubpageLink>
       </Icon>
       <span className={cc(
         "bg-gray-100 dark:bg-gray-900 w-full absolute bottom-0 z-10 flex",

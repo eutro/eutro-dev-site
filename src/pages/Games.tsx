@@ -3,7 +3,7 @@ import { iconOf } from "../components/IconOf";
 import Section from "../components/Section";
 import { Block, Para, BlockImg, Caption, Link } from "../components/simple";
 
-export default function Games(_props: {}) {
+export default function Games(_props: Record<string, never>) {
   return (
     <Section title="Games">
       <Para>

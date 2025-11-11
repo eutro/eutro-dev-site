@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { SubpageLink } from "../components/Navbar";
 import { Link } from "../components/simple";
 
-export default function NotFound({}: {}) {
+export default function NotFound(_props: Record<string, never>) {
   useEffect(() => {
     if (!import.meta.env.SSR) {
       document.title = "404 Not Found";
       return () => {
         document.title = "Eutro";
-      }
+      };
     }
   });
 
@@ -20,5 +20,5 @@ export default function NotFound({}: {}) {
         <SubpageLink Link={Link} subpage={0}>Return to main site</SubpageLink>
       </div>
     </div>
-  )
+  );
 }

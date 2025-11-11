@@ -8,5 +8,5 @@ export default function Section(props: { title: string, children?: ReactNode }) 
       </h1>
       {props.children}
     </div>
-  )
+  );
 }

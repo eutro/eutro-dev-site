@@ -10,12 +10,12 @@ export function iconOf(url: string, name: string) {
             "material-icons transition motion-reduce:transition-none duration-500",
             down && "rotate-[360deg]"
           )}
-          width="24"
-          height="24"
+          width="30"
+          height="30"
           src={url}
           alt="v"
           aria-label={name}/>
       </Icon>
-    )
+    );
   };
 }
