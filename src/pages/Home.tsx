@@ -4,7 +4,6 @@ import { Block, Link } from "../components/simple";
 export default function Home(_props: Record<string, never>) {
   return (
     <Section title="Home">
-      <Block>Welcome to my website, see above for some of my projects.</Block>
       <Block>
         <h2 className="text-xl text-slate-700 dark:text-slate-100 font-bold mb-2">
           Find me on

@@ -28,7 +28,7 @@ function ModIcon(mod: { name: string, slug: string, avatar: string }) {
 export default function OtherThings(_props: Record<string, never>) {
   return (
     <Section title="Other Projects">
-      <Block>An assortment of my other projects.</Block>
+      <Block>Some miscellaneous projects I have worked on.</Block>
       <DropdownCard
         title="R16"
         icon={DefaultIcon}
@@ -52,22 +52,22 @@ export default function OtherThings(_props: Record<string, never>) {
         <Block>
           <div className="flex justify-center">
             <div className="flex flex-col space-y-3 md:flex-row md:space-x-3 md:space-y-0 justify-center">
-              <ModIcon slug="l12n" name="lOwOcalizatiωn" avatar="536/802/637859175423971845" />
-              {" "}
               <ModIcon slug="framed-compacting-drawers" name="Framed Compacting Drawers" avatar="264/387/637226486288344415" />
+              {" "}
+              <ModIcon slug="l12n" name="lOwOcalizatiωn" avatar="536/802/637859175423971845" />
               {" "}
               <ModIcon slug="multiblocktweaker" name="MultiblockTweaker" avatar="288/979/637313657690108479" />
             </div>
           </div>
         </Block>
-        <Block>I've made a number of Minecraft mods, check them out and download them from CurseForge!</Block>
+        <Block>I have written a number of Minecraft mods.</Block>
       </DropdownCard>
 
       <DropdownCard
         title="Touch Grass"
         icon={DefaultIcon}
         links={[{ text: "Touch Grass", url: "https://eutro.dev/touch_grass" }]}>
-        <Block>For when you've been inside for a little too long.</Block>
+        <Block>For when you have not gone outside for a little too long.</Block>
       </DropdownCard>
     </Section>
   );

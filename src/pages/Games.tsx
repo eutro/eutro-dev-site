@@ -7,8 +7,8 @@ export default function Games(_props: Record<string, never>) {
   return (
     <Section title="Games">
       <Para>
-        Here are some games I've made for <Link href="https://itch.io/jams">game jams</Link>
-        , you can play them all in your browser!
+        Some games I have written for <Link href="https://itch.io/jams">game jams</Link>,
+        all playable in the browser.
       </Para>
 
       <DropdownCard

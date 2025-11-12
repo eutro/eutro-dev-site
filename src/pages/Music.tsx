@@ -22,7 +22,7 @@ function Track(props: { title: string, sources: React.JSX.IntrinsicElements["sou
 export default function Music(_props: Record<string, never>) {
   return (
     <Section title="Music">
-      <div className="mb-6">I write music sometimes.</div>
+      <div className="mb-6">Some music I have written.</div>
       <DropdownCard
         title="Composure OST"
         icon={iconOf("https://composure.eutro.dev/icon.png", "Composure icon")}
